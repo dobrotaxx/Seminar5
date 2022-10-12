@@ -29,25 +29,20 @@ int[] getRandomArray(int length, int startPoint, int endPoint) //создаем 
     }
     return resultArray; // возвращаем получившийся массив
 }
-int[] newArray(int[] incomingArray)
+int[] newArray(int[] incomingArray, int length)
 
 {
-    int[] result = incomingArray;
-    for (int i = 0; i < incomingArray.Length; i++)
+    int[] result = new int[length / 2];
+    for (int i = 0; i < length / 2; i++)
     {
-        for (int j = incomingArray.Length - 2;j < incomingArray.Length; j = incomingArray.Length - j - 2)
-        {
-
-            result[i] = incomingArray[i] * incomingArray[j];
-        }
-
+        result[i] = incomingArray[i] * incomingArray[(length - i) - 1];
     }
     return result;
 }
 
-// Console.Write("Введите длину массива: ");
-// int length = Convert.ToInt32(Console.ReadLine());
-int[] currentArray = getRandomArray(5, 1, 10);
+Console.Write("Введите длину массива: ");
+int length = Convert.ToInt32(Console.ReadLine());
+int[] currentArray = getRandomArray(length, 1, 10);
 printArray(currentArray);
-int[] result = newArray(currentArray);
+int[] result = newArray(currentArray, length);
 printArray(result);
