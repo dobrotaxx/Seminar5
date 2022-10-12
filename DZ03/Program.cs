@@ -54,29 +54,33 @@ double[] getRandomArray(int length, int startPoint, int endPoint) //создае
     }
     return resultArray;
 }
-double FindMinAndMax(double[] incomingArray)
-{   
-    double result = 0; 
+double FindMin(double[] incomingArray)
+{
     double minPosition = incomingArray[0];
-    double maxPosition = incomingArray[1];
     for (int i = 0; i < incomingArray.Length; i++)
     {
-
-        if (incomingArray[minPosition] < incomingArray[maxPosition])
+        if (minPosition > incomingArray[i])
         {
             minPosition = incomingArray[i];
         }
-        if (incomingArray[minPosition] > incomingArray[maxPosition])
+    }
+    return minPosition;
+}
+double FindMax(double[] incomingArray)
+{
+    double maxPosition = incomingArray[0];
+    for (int i = 0; i < incomingArray.Length; i++)
+    {
+        if (incomingArray[i] > maxPosition)
         {
             maxPosition = incomingArray[i];
         }
     }
-    result = maxPosition - minPosition;
-    return result;
+    return maxPosition;
 }
 
 int length = getNumberFromUser("Введите длину массива: ");
 double[] currentArray = getRandomArray(length, 1, 10);
 printArray(currentArray);
-double result = FindMinAndMax(currentArray);
-Console.Write($"Сумма всех нечетных чисел в массиве = {result}");
+double result = FindMax(currentArray) - FindMin(currentArray);
+Console.Write($"Разница между максимальным [{FindMax(currentArray)}] и минимальным [{FindMin(currentArray)}] элементами массива составит - [{result}]");
